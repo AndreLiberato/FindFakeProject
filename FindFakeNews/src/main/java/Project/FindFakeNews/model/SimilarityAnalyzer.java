@@ -1,5 +1,5 @@
 package Project.FindFakeNews.model;
 
 public interface SimilarityAnalyzer {
-	double calculateDistance(String x, String y);
+	public double calculateDistance(String x, String y);
 }
