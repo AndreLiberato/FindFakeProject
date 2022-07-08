@@ -6,48 +6,80 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.FindFakeNews.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.FindFakeNews.MainController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="44.0" prefWidth="611.0" text="Detector de fake news">
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="674.0" text="Detector de fake news">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Label text="Texto da notícia:" />
+            <Label text="Texto da notícia:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <TextArea fx:id="textToAnalyze" prefHeight="76.0" prefWidth="560.0" promptText="Insira o texto da notícia aqui">
                <VBox.margin>
-                  <Insets bottom="20.0" top="10.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextArea>
+            <Text fx:id="helperText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo obrigatório" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
             <Label text="Escolha um algoritmo para análise de similaridade:">
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
-            <RadioButton fx:id="rbLevenshtein" mnemonicParsing="false" text="Algoritmo Levenshtein">
+            <RadioButton fx:id="rbLevenshtein" mnemonicParsing="false" selected="true" text="Algoritmo Levenshtein">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="rbJaroWinkler" mnemonicParsing="false" text="Algoritmo Jaro-Winkler">
+            <RadioButton fx:id="rbJaroWinkler" mnemonicParsing="false" text="Algoritmo Jaro-Winkler" toggleGroup="$group">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </RadioButton>
-            <Label text="Label" />
+            <Label text="Ajuste o limiar de confiança:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="23.0" prefWidth="560.0">
                <children>
-                  <Slider fx:id="thresholdSlider" prefHeight="16.0" prefWidth="517.0" value="85.0">
+                  <Slider fx:id="thresholdSlider" prefHeight="16.0" prefWidth="466.0" value="85.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -56,6 +88,9 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Label>
                </children>
                <VBox.margin>
@@ -66,25 +101,31 @@
                <children>
                   <Button fx:id="buttonAnalyze" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #6559f5#6559f5;" text="Analisar" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <Label fx:id="resultTitle">
+            <Label fx:id="resultTitle" text="Resultado:" visible="false">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </Label>
-            <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="598.0" text="-" textAlignment="CENTER">
+            <Label fx:id="result" prefHeight="27.0" prefWidth="511.0" text="Essa notícia pode ser falsa. Busque fontes confiáveis" visible="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </center>
+   <padding>
+      <Insets bottom="40.0" left="120.0" right="120.0" top="40.0" />
+   </padding>
 </BorderPane>
