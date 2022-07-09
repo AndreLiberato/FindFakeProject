@@ -9,6 +9,7 @@ import Project.FindFakeNews.model.AnalyzerOptions;
 import Project.FindFakeNews.model.JaroWinklerAnalyzer;
 import Project.FindFakeNews.model.LevenshteinAnalyzer;
 import Project.FindFakeNews.model.News;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 
@@ -31,6 +33,8 @@ public class MainController implements Initializable {
     @FXML
     private ToggleGroup group = new ToggleGroup();
     @FXML
+    private ChoiceBox<String> wordSizeSelect;
+    @FXML
     private RadioButton rbLevenshtein;
     @FXML
     private RadioButton rbJaroWinkler;
@@ -44,25 +48,24 @@ public class MainController implements Initializable {
     private NewsDAO newsDAO = new NewsDAO();
     private LevenshteinAnalyzer lAnalyzer = new LevenshteinAnalyzer();
     private JaroWinklerAnalyzer jwAnalyzer = new JaroWinklerAnalyzer();
-    // private TextProcessor textProcessor = new TextProcessor();
+    private TextProcessor textProcessor = new TextProcessor();
   
     
     /**
      * Verifica se os dados inseridos são válidos, chama o método para analisar notícia e exibe resultado na tela
-     * @author Lorena Toscano
+     * 
+     * @param event Evento acionado pelo clique no botão.
+     * 
+     * @author LorenaToscano
      */
 	@FXML
 	public void handleSubmit(ActionEvent event) throws IOException {
 		try {
-			System.out.println(textToAnalyze.getText());
-			
 			if (textToAnalyze.getText().trim().isEmpty()) {
 				throw new IOException("Campo obrigatório!");
 			}
 			
-			String processedText = "";
-			
-//			processedText = textProcessor.processText(textToAnalyze.getText());
+			String processedText = textProcessor.processText(textToAnalyze.getText());
 
 			boolean isFake = analyzeNews(processedText, (AnalyzerOptions) group.getSelectedToggle().getUserData());
 			
@@ -84,9 +87,14 @@ public class MainController implements Initializable {
 	}
 	
 	/**
-	 * Percorre todas as notícias armazenadas aplicando o algoritmo de similaridade entre elas e a string 
-	 * inserida até encontrar algum resultado maior ou igual ao threshold
-	 * @author Lorena Toscano
+	 * Percorre todas as notícias armazenadas aplicando o algoritmo de similaridade entre elas e 
+	 * a notícia inserida até encontrar algum resultado maior ou igual ao threshold
+	 * 
+	 * @param content String com conteúdo processado da notícia.
+	 * @param analyzer Enum que indica qual algoritmo foi escolhido para a análise de similaridade.
+	 * @return Booleano indicando se a notícia é fake ou não.
+	 * 
+	 * @author LorenaToscano
 	 */
 	public boolean analyzeNews(String content, AnalyzerOptions analyzer) {
 		double result = 0;
@@ -111,22 +119,43 @@ public class MainController implements Initializable {
 	 * @author 
 	 */
 	public void loadData() throws IOException {
-		
+		throw new IOException("Erro na leitura do CSV!");
 	}
   
 	
 	/**
 	 * Ao iniciar a aplicação, chama o método de carregar os dados e adiciona configurações iniciais 
 	 * aos elementos de input
-	 * @author Lorena Toscano
+	 * 
+	 * @author LorenaToscano
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 //		try {
-//			// Chama funçao loadData
+//			loadData();
 //		} catch (IOException e) {
-//			System.out.println("Erro na leitura do CSV!);
+//			System.err.println(e.getMessage());
 //		}
+		
+		wordSizeSelect.setItems(FXCollections.observableArrayList(
+				"2 caracteres ou menos", 
+				"3 caracteres ou menos", 
+				"4 caracteres ou menos"
+		));
+		
+		wordSizeSelect.setValue("3 caracteres ou menos");
+		
+		wordSizeSelect.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			textProcessor.setWordSize(Integer.parseInt(newValue.split(" ")[0]));
+			System.out.println(textProcessor.getWordSize());
+			textProcessor.configureSmallWordsRegex();
+			
+//			try {
+//				loadData();
+//			} catch (IOException e) {
+//				System.err.println(e.getMessage());
+//			}
+		});
 	  
 		thresholdSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 			thresholdPercentage.setText(Integer.toString(newValue.intValue()) + "%");

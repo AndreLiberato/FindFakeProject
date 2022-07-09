@@ -74,7 +74,7 @@ public class TextProcessor {
 	 * chamadas em processText afeta consideravelmente o resultado final.
 	 * 
 	 * @param text String contendo o texto que será processado.
-	 * @return Stringo contendo o texto processado.
+	 * @return String contendo o texto processado.
 	 */
 	public String processText(String text) {
 		text += " ";
