@@ -1,4 +1,4 @@
-package Project.FindFakeNews;
+package Project.FindFakeNews.Controller;
 
 import java.text.Normalizer;
 import java.util.Collections;
@@ -25,7 +25,7 @@ public class TextProcessor {
 	 * Construtor da classe. Configura o wordSize default para 3 e configura
 	 * smallWordRegex com o valor de wordSize.
 	 */
-	TextProcessor() {
+	public TextProcessor() {
 		setWordSize(3);
 		configureSmallWordsRegex();
 	}
@@ -36,7 +36,7 @@ public class TextProcessor {
 	 * @param wordSize Inteiro que representa o tamanho das palavras que serão
 	 * removidas.
 	 */
-	void setWordSize(Integer wordSize) {
+	public void setWordSize(Integer wordSize) {
 		this.wordSize = wordSize;
 	}
 
@@ -54,7 +54,7 @@ public class TextProcessor {
 	 * wordSize precisa estar previamente settado. Em caso de troca do valor de
 	 * wordSize, chamar novamente a função de configuração.
 	 */
-	void configureSmallWordsRegex() {
+	public void configureSmallWordsRegex() {
 		String wordSizeStr = getWordSize().toString();
 		smallWordsRegex = "(?<= )([a-zA-Z]{1," + wordSizeStr + "})(?= )|^([a-zA-Z]{1," + wordSizeStr
 				+ "})(?=\\W)|(?<= )([a-zA-Z]{1," + wordSizeStr + "})(?=\\W)";

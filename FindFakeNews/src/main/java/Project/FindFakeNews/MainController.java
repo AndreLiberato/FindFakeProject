@@ -5,9 +5,9 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
+import Project.FindFakeNews.Controller.TextProcessor;
 import Project.FindFakeNews.DAO.NewsDAO;
 import Project.FindFakeNews.Model.AnalyzerOptions;
 import Project.FindFakeNews.Model.JaroWinklerAnalyzer;
