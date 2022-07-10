@@ -1,4 +1,4 @@
-package Project.FindFakeNews.model;
+package Project.FindFakeNews.Model;
 
 import java.time.LocalDateTime;
 

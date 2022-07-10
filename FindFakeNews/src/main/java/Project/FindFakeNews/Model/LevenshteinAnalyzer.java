@@ -1,4 +1,4 @@
-package Project.FindFakeNews.model;
+package Project.FindFakeNews.Model;
 
 import org.apache.commons.text.similarity.LevenshteinDistance;
 

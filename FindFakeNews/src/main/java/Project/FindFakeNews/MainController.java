@@ -9,10 +9,10 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import Project.FindFakeNews.DAO.NewsDAO;
-import Project.FindFakeNews.model.AnalyzerOptions;
-import Project.FindFakeNews.model.JaroWinklerAnalyzer;
-import Project.FindFakeNews.model.LevenshteinAnalyzer;
-import Project.FindFakeNews.model.News;
+import Project.FindFakeNews.Model.AnalyzerOptions;
+import Project.FindFakeNews.Model.JaroWinklerAnalyzer;
+import Project.FindFakeNews.Model.LevenshteinAnalyzer;
+import Project.FindFakeNews.Model.News;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

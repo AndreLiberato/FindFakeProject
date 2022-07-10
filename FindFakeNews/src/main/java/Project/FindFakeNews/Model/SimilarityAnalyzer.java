@@ -1,4 +1,4 @@
-package Project.FindFakeNews.model;
+package Project.FindFakeNews.Model;
 
 /* Classe responsável por definir a função calculateDistance(), que busca a similaridade entre strings.
  * @author Gabriel Bassani
