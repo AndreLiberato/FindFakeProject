@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import Project.FindFakeNews.model.News;
 
+/* Classe para armazenas as notícias.
+ * @author Gabriel Bassani
+ */ 
 public class NewsDAO {
 	private HashMap<Integer, News> newsMap = new HashMap<Integer, News>();
 	

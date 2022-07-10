@@ -2,6 +2,8 @@ package Project.FindFakeNews;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import Project.FindFakeNews.DAO.NewsDAO;
@@ -20,8 +22,9 @@ import javafx.scene.text.Text;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class MainController implements Initializable {
     @FXML
@@ -116,10 +119,50 @@ public class MainController implements Initializable {
 	
 	/**
 	 * Carrega os dados das notícias do CSV e os armazena no DAO
-	 * @author 
+	 * @author Gabriel Bassani
 	 */
-	public void loadData() throws IOException {
-		throw new IOException("Erro na leitura do CSV!");
+	public void loadData() throws IOException, FileNotFoundException {
+		//throw new IOException("Erro na leitura do CSV!");
+		String file = "src\\data\\boatos.csv";
+		BufferedReader reader = null;
+		String line = "";
+		String separador = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			while((line = reader.readLine()) != null) {
+				News news = new News();
+				
+				String[] colunas = line.split(separador);
+		        
+		        if(colunas.length == 4)
+		        {
+		        	news.setId( Integer.parseInt(colunas[0]));
+		        	news.setOriginalText(colunas[1]);
+		        	news.setProcessedText(textProcessor.processText(colunas[1]));
+		        	news.setUrl(colunas[2]);
+		        	LocalDateTime dateTime = LocalDateTime.parse(colunas[3], formatador);
+		        	news.setDate(dateTime);
+		        }
+		        newsDAO.addNews(news);
+			}
+		} catch(FileNotFoundException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			try {
+				reader.close();
+			} catch(IOException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		
+		
+		
+		
+		
 	}
   
 	
@@ -150,11 +193,11 @@ public class MainController implements Initializable {
 			System.out.println(textProcessor.getWordSize());
 			textProcessor.configureSmallWordsRegex();
 			
-//			try {
-//				loadData();
-//			} catch (IOException e) {
-//				System.err.println(e.getMessage());
-//			}
+		try {
+				loadData();
+			} catch (IOException e) {
+				System.err.println(e.getMessage());
+			}
 		});
 	  
 		thresholdSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -164,4 +207,5 @@ public class MainController implements Initializable {
 		rbLevenshtein.setUserData(AnalyzerOptions.LEVENSHTEIN);
 		rbJaroWinkler.setUserData(AnalyzerOptions.JARO_WINKLER);
 	}
+	
 }

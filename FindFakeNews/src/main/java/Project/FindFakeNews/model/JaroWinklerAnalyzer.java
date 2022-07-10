@@ -6,9 +6,9 @@ public class JaroWinklerAnalyzer implements SimilarityAnalyzer {
 
 	@Override
 	public double calculateDistance(String x, String y) {
-		/* Jaro Similarity is the measure of similarity between two strings. 
-		 * The value of Jaro distance ranges from 0 to 1.
-		 * Where 1 means the strings are equal and 0 means no similarity between the two strings. 
+		/* Calcula a similaridade entre duas strings utilizando o algoritmo Jaro-Winkler
+		 * Depois converte para porcentagem.
+		 * @author Gabriel Bassani
 		 */ 
 		
 		JaroWinklerDistance jaro = new JaroWinklerDistance();

@@ -1,13 +1,16 @@
 package Project.FindFakeNews.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+/* Classe para representar as notícias.
+ * @author Gabriel Bassani
+ */ 
 public class News {
 	private Integer id;
 	private String originalText;
 	private String processedText;
 	private String url;
-	private LocalDate date;
+	private LocalDateTime date;
 	
 	
 	public Integer getId() {
@@ -34,10 +37,10 @@ public class News {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 	
