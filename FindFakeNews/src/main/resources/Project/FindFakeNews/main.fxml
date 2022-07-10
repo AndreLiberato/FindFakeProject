@@ -48,7 +48,7 @@
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="510.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="206.0" text="Remover palavras com">
+                  <Label prefHeight="20.0" prefWidth="206.0" text="Remover palavras com até:">
                      <font>
                         <Font size="14.0" />
                      </font>

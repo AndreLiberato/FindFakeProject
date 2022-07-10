@@ -125,7 +125,7 @@ public class TextProcessor {
 	 * @return String com o texto processado.
 	 */
 	private String removeSpecialCharacters(String text) {
-		return text.replaceAll(specialCharactersRegex, "");
+		return text.replaceAll(specialCharactersRegex, " ");
 	}
 
 	/**
