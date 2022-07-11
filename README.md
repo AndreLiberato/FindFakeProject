@@ -21,6 +21,11 @@ Acesse a pasta do projeto:
 cd FindFakeProject
 ```
 
+Acesse a pasta do código fonte do projeto 
+```
+cd FindFakeNews
+```
+
 Compile e execute o projeto usando:
 
 ```
