@@ -51,3 +51,7 @@ Na tela `Edit Configuration` no campo `Goals:` adicione o seguinte comando:
 ```
 clean javafx:run
 ```
+
+# Relatório do projeto
+
+O relatório final do projeto pode ser acesso clicando [**aqui**](https://drive.google.com/file/d/1yzYCjH2uwvR5Z4YVVOe8Gsy6li1LTu2i/view?usp=sharing)
