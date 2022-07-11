@@ -4,33 +4,50 @@ Projeto da disciplina de Linguagem de Programação II
 
 # Requisitos
 
-- **JavaSDK** versão [18.0.1.1](https://www.oracle.com/java/technologies/downloads/)
+- [**Maven**](https://maven.apache.org/download.cgi)
   
-- **JavaFx SDK** versão [18.0.1](https://gluonhq.com/products/javafx/)
-  
+
+# Como executar
+
+Primeiramente, é necessário clonar o repósitório em sua máquina local. Use:
+
+```
+git clone https://github.com/AndreLiberato/FindFakeProject.git
+```
+
+Acesse a pasta do projeto:
+
+```
+cd FindFakeProject
+```
+
+Compile e execute o projeto usando:
+
+```
+mvn javafx:run
+```
+
+# No Eclipse
+
+Para executar o projeto usando o eclipse é necessário que você tenha instalado em sua máquina os sequintes requisitos:
+
 - [**Maven**](https://maven.apache.org/download.cgi)
   
 - [**Eclipse IDE**](https://www.eclipse.org/downloads/)
   
-  - Plugins: **E(fx)clipse** para javaFX e **Eclipse m2e** para o Maven
-    
 
-# Configuração do Eclipse
+  - Plugins: **E(fx)clipse** para javaFX e **Eclipse m2e** para o Maven
 
-Para configurar o eclipse é preciso apenas a instalação dos Plugins listados nos Requisitos e configurar o caminho até a pasta lib dentro do JavaFX.
+## Importando o projeto
 
-Para acessar essa configuração os passos dentro do Eclipse: `Windows -> Preferences -> JavaFX`
+Abra o eclipse e siga em : `File -> Import -> Maven -> Existing Maven Projects`e selecione a pasta `FindFakeNews`dentro do repositório do projeto.
 
-Logo essa tela, será possível ver o campo **JavaFX 11+ SDK** e nele será adicionado o caminho até a pasta lib dentro do SDK do JavaFX. Se você adicionar a pasta do JavaFX SDK dentro da pasta do Java (**Recomendado**) você terá o seguinte caminho:
+## Executando o projeto no eclipse
 
-`C:\Program Files\Java\javafx-sdk-18.0.1\lib`
+Para executar o projeto siga em: `Run -> Run as -> Maven Build...`
 
-# Importando o projeto
+Na tela `Edit Configuration` no campo `Goals:` adicione o seguinte comando:
 
-Clone o repositório na pasta que preferir.
-
-Abra o eclipse e siga em : `File -> Import -> Maven -> Existing Maven Projects`e selecione a pasta `FindFakeNews`dentro do repositório.
-
-# Executando o projeto
-
-Para executar o projeto siga em: `Run -> Run as -> Maven Build`
+```
+clean javafx:run
+```
