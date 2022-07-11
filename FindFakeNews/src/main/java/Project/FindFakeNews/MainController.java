@@ -133,7 +133,6 @@ public class MainController implements Initializable {
 	 * @author Gabriel Bassani
 	 */
 	public void loadData() throws IOException, FileNotFoundException {
-		// throw new IOException("Erro na leitura do CSV!");
 		String file = "src\\data\\boatos.csv";
 		BufferedReader reader = null;
 		String line = "";
